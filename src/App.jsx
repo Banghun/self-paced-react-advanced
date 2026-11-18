@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import Header from "./components/Header";
-import CategoryFilter from "./components/CategoryFilter";
-import RestaurantList from "./components/RestaurantList";
-import RestaurantDetailModal from "./components/RestaurantDetailModal";
-import AddRestaurantModal from "./components/AddRestaurantModal";
-import { ALL_CATEGORY } from "./constants/categories";
-import { getRestaurants, postRestaurant } from "./api/restaurants";
+import { useEffect, useState } from 'react';
+import './App.css';
+import Header from './components/Header';
+import CategoryFilter from './components/CategoryFilter';
+import RestaurantList from './components/RestaurantList';
+import RestaurantDetailModal from './components/RestaurantDetailModal';
+import AddRestaurantModal from './components/AddRestaurantModal';
+import { ALL_CATEGORY } from './constants/categories';
+import { getRestaurants, postRestaurant } from './api/restaurants';
+import CustomPointer from './components/CustomPointer';
 
 function App() {
   // 서버에서 받아오기 전에는 빈 배열
@@ -22,7 +23,7 @@ function App() {
       const data = await getRestaurants();
       setRestaurants(data);
     } catch (error) {
-      console.error("Error fetching restaurants:", error);
+      console.error('Error fetching restaurants:', error);
     }
   };
 
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <>
+      <CustomPointer />
       <Header onClickAddButton={() => setIsAddModalOpen(true)} />
       <main>
         <CategoryFilter category={category} onChangeCategory={setCategory} />
