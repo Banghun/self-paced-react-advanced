@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { textTitle } from '../styles/typography';
 
+const BACKDROP_COLOR = 'rgba(0, 0, 0, 0.35)';
+
 // 두 모달이 같이 쓰는 틀. 안쪽 내용은 children으로 받는다.
 function Modal({ title, onClose, children }) {
   return (
@@ -21,7 +23,7 @@ const Backdrop = styled.div`
   bottom: 0;
   left: 0;
 
-  background: rgba(0, 0, 0, 0.35);
+  background: ${BACKDROP_COLOR};
 `;
 
 const Container = styled.div`
