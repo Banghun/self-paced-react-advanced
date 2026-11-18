@@ -20,13 +20,11 @@ function CustomPointer() {
 
   if (!position) return null;
 
-  return <Pointer $x={position.x} $y={position.y} />;
+  return <Pointer style={{ left: position.x, top: position.y }} />;
 }
 
 const Pointer = styled.div`
   position: fixed;
-  left: ${({ $x }) => $x}px;
-  top: ${({ $y }) => $y}px;
   transform: translate(-50%, -50%);
 
   width: 24px;
