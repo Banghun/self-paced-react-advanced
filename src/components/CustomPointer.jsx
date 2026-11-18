@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 const POINTER_FILL_COLOR = 'rgba(236, 74, 10, 0.2)';
+
+const HideDefaultCursor = createGlobalStyle`
+  * {
+    cursor: none !important;
+  }
+`;
 
 function CustomPointer() {
   const [position, setPosition] = useState(null); // 처음엔 위치 모름
@@ -20,7 +26,12 @@ function CustomPointer() {
 
   if (!position) return null;
 
-  return <Pointer style={{ left: position.x, top: position.y }} />;
+  return (
+    <>
+      <HideDefaultCursor />
+      <Pointer style={{ left: position.x, top: position.y }} />
+    </>
+  );
 }
 
 const Pointer = styled.div`
