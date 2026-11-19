@@ -1,15 +1,27 @@
 import styled from 'styled-components';
-import { CATEGORY_ICONS } from '../constants/categories';
+import { ALL_CATEGORY, CATEGORY_ICONS } from '../constants/categories';
+import { useRestaurantStore } from '../store/useRestaurantStore';
 import { textBody, textSubtitle } from '../styles/typography';
 
-function RestaurantList({ restaurants, onSelectRestaurant }) {
+function RestaurantList() {
+  const restaurants = useRestaurantStore((s) => s.restaurants);
+  const filterCategory = useRestaurantStore((s) => s.filterCategory);
+  const selectRestaurant = useRestaurantStore((s) => s.selectRestaurant);
+
+  const filteredRestaurants =
+    filterCategory === ALL_CATEGORY
+      ? restaurants
+      : restaurants.filter(
+          (restaurant) => restaurant.category === filterCategory,
+        );
+
   return (
     <ListContainer>
       <ul>
-        {restaurants.map((restaurant) => (
+        {filteredRestaurants.map((restaurant) => (
           <Item
             key={restaurant.id}
-            onClick={() => onSelectRestaurant(restaurant)}
+            onClick={() => selectRestaurant(restaurant)}
           >
             <CategoryIconWrapper>
               <CategoryIcon
