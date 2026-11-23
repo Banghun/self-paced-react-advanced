@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 const POINTER_FILL_COLOR = 'rgba(236, 74, 10, 0.2)';
@@ -10,11 +10,15 @@ const HideDefaultCursor = createGlobalStyle`
 `;
 
 function CustomPointer() {
-  const [position, setPosition] = useState(null); // 처음엔 위치 모름
+  const pointerRef = useRef(null);
 
   useEffect(() => {
     const handleMouseMove = (event) => {
-      setPosition({ x: event.clientX, y: event.clientY });
+      const pointer = pointerRef.current;
+      if (!pointer) return;
+      pointer.style.left = `${event.clientX}px`;
+      pointer.style.top = `${event.clientY}px`;
+      pointer.style.visibility = 'visible';
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -24,12 +28,10 @@ function CustomPointer() {
     };
   }, []);
 
-  if (!position) return null;
-
   return (
     <>
       <HideDefaultCursor />
-      <Pointer style={{ left: position.x, top: position.y }} />
+      <Pointer ref={pointerRef} />
     </>
   );
 }
@@ -37,6 +39,7 @@ function CustomPointer() {
 const Pointer = styled.div`
   position: fixed;
   transform: translate(-50%, -50%);
+  visibility: hidden;
 
   width: 24px;
   height: 24px;
