@@ -2,11 +2,11 @@ import { create } from 'zustand';
 import { ALL_CATEGORY } from '../constants/categories';
 
 export const useRestaurantStore = create((set) => ({
-  filterCategory: ALL_CATEGORY,
+  selectedCategory: ALL_CATEGORY,
   selectedRestaurant: null,
   isAddModalOpen: false,
 
-  setFilterCategory: (filterCategory) => set({ filterCategory }),
+  setSelectedCategory: (category) => set({ selectedCategory: category }),
   selectRestaurant: (restaurant) => set({ selectedRestaurant: restaurant }),
   clearSelectedRestaurant: () => set({ selectedRestaurant: null }),
   openAddModal: () => set({ isAddModalOpen: true }),

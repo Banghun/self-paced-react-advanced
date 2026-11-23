@@ -3,8 +3,8 @@ import { ALL_CATEGORY, CATEGORIES } from '../constants/categories';
 import { useRestaurantStore } from '../store/useRestaurantStore';
 
 function CategoryFilter() {
-  const filterCategory = useRestaurantStore((s) => s.filterCategory);
-  const setFilterCategory = useRestaurantStore((s) => s.setFilterCategory);
+  const filterCategory = useRestaurantStore((s) => s.selectedCategory);
+  const setFilterCategory = useRestaurantStore((s) => s.setSelectedCategory);
 
   return (
     <FilterContainer>
