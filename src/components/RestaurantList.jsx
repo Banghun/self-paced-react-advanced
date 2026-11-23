@@ -7,6 +7,9 @@ function RestaurantList({ restaurants, isLoading, error }) {
   const filterCategory = useRestaurantStore((s) => s.filterCategory);
   const selectRestaurant = useRestaurantStore((s) => s.selectRestaurant);
 
+  if (isLoading) return <StatusText>불러오는 중...</StatusText>;
+  if (error) return <StatusText>음식점 목록을 불러오지 못했습니다.</StatusText>;
+
   const filteredRestaurants =
     filterCategory === ALL_CATEGORY
       ? restaurants
@@ -38,6 +41,11 @@ function RestaurantList({ restaurants, isLoading, error }) {
     </ListContainer>
   );
 }
+
+const StatusText = styled.p`
+  ${textBody}
+  padding: 16px;
+`;
 
 const ListContainer = styled.section`
   display: flex;
