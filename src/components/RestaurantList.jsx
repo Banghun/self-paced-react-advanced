@@ -3,8 +3,7 @@ import { ALL_CATEGORY, CATEGORY_ICONS } from '../constants/categories';
 import { useRestaurantStore } from '../store/useRestaurantStore';
 import { textBody, textSubtitle } from '../styles/typography';
 
-function RestaurantList() {
-  const restaurants = useRestaurantStore((s) => s.restaurants);
+function RestaurantList({ restaurants, isLoading, error }) {
   const filterCategory = useRestaurantStore((s) => s.filterCategory);
   const selectRestaurant = useRestaurantStore((s) => s.selectRestaurant);
 

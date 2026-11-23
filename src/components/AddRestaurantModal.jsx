@@ -6,8 +6,7 @@ import { CATEGORIES } from '../constants/categories';
 import { textCaption } from '../styles/typography';
 import { useRestaurantStore } from '../store/useRestaurantStore';
 
-function AddRestaurantModal() {
-  const addRestaurant = useRestaurantStore((s) => s.addRestaurant);
+function AddRestaurantModal({ onAddRestaurant }) {
   const closeAddModal = useRestaurantStore((s) => s.closeAddModal);
 
   const [category, setCategory] = useState('');
@@ -19,7 +18,7 @@ function AddRestaurantModal() {
     event.preventDefault();
 
     try {
-      await addRestaurant({
+      await onAddRestaurant({
         id: Date.now(),
         category,
         name,

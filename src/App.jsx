@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import './App.css';
 import Header from './components/Header';
 import CategoryFilter from './components/CategoryFilter';
@@ -7,19 +6,15 @@ import RestaurantDetailModal from './components/RestaurantDetailModal';
 import AddRestaurantModal from './components/AddRestaurantModal';
 import CustomPointer from './components/CustomPointer';
 import { useRestaurantStore } from './store/useRestaurantStore';
+import { useRestaurants } from './hooks/useRestaurants';
 
 function App() {
-  const fetchRestaurants = useRestaurantStore((s) => s.fetchRestaurants);
+  const { restaurants, isLoading, error, addRestaurant } = useRestaurants();
   const selectedRestaurant = useRestaurantStore((s) => s.selectedRestaurant);
   const clearSelectedRestaurant = useRestaurantStore(
     (s) => s.clearSelectedRestaurant,
   );
   const isAddModalOpen = useRestaurantStore((s) => s.isAddModalOpen);
-
-  // 화면이 처음 그려졌을 때 한 번 목록을 가져온다
-  useEffect(() => {
-    fetchRestaurants();
-  }, [fetchRestaurants]);
 
   return (
     <>
@@ -27,7 +22,11 @@ function App() {
       <Header />
       <main>
         <CategoryFilter />
-        <RestaurantList />
+        <RestaurantList
+          restaurants={restaurants}
+          isLoading={isLoading}
+          error={error}
+        />
       </main>
       <aside>
         {selectedRestaurant && (
@@ -36,7 +35,9 @@ function App() {
             onClose={clearSelectedRestaurant}
           />
         )}
-        {isAddModalOpen && <AddRestaurantModal />}
+        {isAddModalOpen && (
+          <AddRestaurantModal onAddRestaurant={addRestaurant} />
+        )}
       </aside>
     </>
   );
