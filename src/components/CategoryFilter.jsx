@@ -3,8 +3,8 @@ import { ALL_CATEGORY, CATEGORIES } from '../constants/categories';
 import { useRestaurantStore } from '../store/useRestaurantStore';
 
 function CategoryFilter() {
-  const filterCategory = useRestaurantStore((s) => s.selectedCategory);
-  const setFilterCategory = useRestaurantStore((s) => s.setSelectedCategory);
+  const selectedCategory = useRestaurantStore((s) => s.selectedCategory);
+  const setSelectedCategory = useRestaurantStore((s) => s.setFilterCategory);
 
   return (
     <FilterContainer>
@@ -12,8 +12,8 @@ function CategoryFilter() {
         name="category"
         id="category-filter"
         aria-label="음식점 카테고리 필터"
-        value={filterCategory}
-        onChange={(event) => setFilterCategory(event.target.value)}
+        value={selectedCategory}
+        onChange={(event) => setSelectedCategory(event.target.value)}
       >
         {[ALL_CATEGORY, ...CATEGORIES].map((item) => (
           <option key={item} value={item}>
