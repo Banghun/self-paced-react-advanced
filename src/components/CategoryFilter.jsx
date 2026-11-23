@@ -4,7 +4,7 @@ import { useRestaurantStore } from '../store/useRestaurantStore';
 
 function CategoryFilter() {
   const selectedCategory = useRestaurantStore((s) => s.selectedCategory);
-  const setSelectedCategory = useRestaurantStore((s) => s.setFilterCategory);
+  const setSelectedCategory = useRestaurantStore((s) => s.setSelectedCategory);
 
   return (
     <FilterContainer>
