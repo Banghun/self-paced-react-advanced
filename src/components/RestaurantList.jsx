@@ -23,6 +23,8 @@ function RestaurantList({ restaurants, isLoading, error }) {
         {filteredRestaurants.map((restaurant) => (
           <Item
             key={restaurant.id}
+            role="button"
+            tabIndex={0}
             onClick={() => selectRestaurant(restaurant)}
           >
             <CategoryIconWrapper>
