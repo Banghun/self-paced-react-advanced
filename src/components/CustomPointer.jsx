@@ -10,7 +10,8 @@ const HideDefaultCursor = createGlobalStyle`
   }
 `;
 
-const CLICKABLE_SELECTOR = 'a, button, select, input, label, [role="button"]';
+const CLICKABLE_SELECTOR =
+  'a, button, select, input, textarea, label, [role="button"]';
 
 function CustomPointer() {
   const pointerRef = useRef(null);
@@ -49,8 +50,8 @@ const Pointer = styled.div`
   transform: translate(-50%, -50%);
   visibility: hidden;
 
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
 
   border: 2px solid var(--primary-color);
   border-radius: 50%;
